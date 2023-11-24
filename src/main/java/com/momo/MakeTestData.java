@@ -28,12 +28,32 @@ public class MakeTestData extends DBConnection{
 			
 		}
 	}
+	public void bookInsert() {
+		String sql = "insert into book values (?, ?, 'N', ?)";
+		for(int i = 1;i<=303;i++) {
+			try {
+				pstmt=con.prepareStatement(sql);
+				// 파라메터 세팅
+				pstmt.setInt(1, i);
+				pstmt.setString(2, "책" + i);
+				pstmt.setString(3, "작가" + i);
+				
+				// 입력 실행
+				int res = pstmt.executeUpdate();
+				System.out.println(res + "건 입력되었습니다.");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+	}
 	/**
 	 * 자바 프로그램 실행
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		MakeTestData d = new MakeTestData();
-		d.insert();
+		d.bookInsert();
 	}
 }

@@ -10,6 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
+
+
 <script type="text/javascript">
 	window.onload = function(){
 		// 버튼을 클릭하면 리스트 페이지로 이동

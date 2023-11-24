@@ -14,7 +14,7 @@ import com.momo.dto.Criteria;
 //				main 메서드 사용 불가능. 서버가 실행되어야 사용 가능
 // 만약, main 메서드를 이용해야 한다면 DBConnection을 사용해야함
 public class BoardDao extends DBConnPool{
-	
+	// data access object
 	
 	//public int insertBoard(BoardDto dto) {
 	//	return 1;
@@ -103,16 +103,24 @@ public class BoardDao extends DBConnPool{
 	 */
 	public List<BoardDto> getList(Criteria cri){
 		List<BoardDto> list = new ArrayList<>();
-		String sql = "select * \r\n"
-				+ "from (\r\n"
-				+ "       select rownum rnum, b.* \r\n"
-				+ "       from (\r\n"
-				+ "                select * from board\r\n"
-				+ "                order by num desc) b\r\n"
-				+ "        )\r\n"
-				+ "where rnum between ? and ?";
+		String where = "";
+		if(cri.getSearchField() != null && !"".equals(cri.getSearchField())
+				&&cri.getSearchWord() != null && !"".equals(cri.getSearchWord())) {
+			where = "where "+cri.getSearchField()+" like '%" + cri.getSearchWord() + "%'\r\n";
+		}
+		// 컬럼명은 ?로 처리 안됌		
+		System.out.println(where);
 		
 		try {
+			String sql = "select * \r\n"
+					+ "from (\r\n"
+					+ "       select rownum rnum, b.* \r\n"
+					+ "       from (\r\n"
+					+ "                select * from board\r\n"
+					+				   where
+					+ "                order by num desc) b\r\n"
+					+ "        )\r\n"
+					+ "where rnum between ? and ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, cri.getStartNum());
 			pstmt.setInt(2, cri.getEndNum());
@@ -145,9 +153,17 @@ public class BoardDao extends DBConnPool{
 	 *  - 집계함수 이용
 	 * @return 게시글의 총 건수
 	 */
-	public int getTotalCnt() {
+	public int getTotalCnt(Criteria cri) {
 		int res = 0;
-		String sql = "select count(*) from board";
+		String where="";
+		
+		if(!"".equals(cri.getSearchField())
+				&& !"".equals(cri.getSearchWord())) {
+			where = "where " + cri.getSearchField() 
+							+ " like '%" + cri.getSearchWord() + "%'";
+		}
+		String sql = "select count(*) from board " + where;
+		System.out.println("sql : " + sql);
 		
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -164,4 +180,6 @@ public class BoardDao extends DBConnPool{
 		
 		return res;
 	}
+	
+	
 }
