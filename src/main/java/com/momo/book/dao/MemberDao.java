@@ -27,7 +27,7 @@ public class MemberDao extends DBConnPool{
 			
 			if(rs.next()) {
 				String id = rs.getString("id");
-				String pw = rs.getString("pw");
+				String pw = rs.getString("pass");
 				String name = rs.getString("name");
 				String email = rs.getString("email");
 				
@@ -76,7 +76,7 @@ public class MemberDao extends DBConnPool{
 		return possible;
 	}
 	
-	public int regist(String id, String name, String email, String pw, String pwRepeat) {
+	public int regist(String id, String name, String email, String pw) {
 		int res = 0;
 		
 		if(!checkEmail(email)) {
@@ -84,9 +84,6 @@ public class MemberDao extends DBConnPool{
 		}
 		if(!checkId(id)) {
 			return 100;
-		}
-		if(!pw.equals(pwRepeat)) {
-			return 101;
 		}
 		
 		String sql = "insert into member(id, pass, name, regidate, email)\r\n"
@@ -107,6 +104,27 @@ public class MemberDao extends DBConnPool{
 		
 		return res;
 		
+	}
+	
+	public String findPw(String id, String email) {
+		String sql ="select * from member\r\n"
+				+ "where id=? and email=?";
+		String pw = "";
+		try {
+			pstmt=con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			pstmt.setString(2, email);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				pw = rs.getString("pass");
+			}
+		} catch (SQLException e) {
+			System.out.println("pw 찾기 실패.");
+			e.printStackTrace();
+		}
+		
+		return pw;
 	}
 
 }

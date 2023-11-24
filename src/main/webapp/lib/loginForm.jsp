@@ -29,7 +29,10 @@
     <input type="password" name="user_pw" class="form-control" id="InputPassword">
   </div>
   <button type="submit" class="btn btn-primary">login</button>
-  <input name="from" type="text" value="${param.from }">
+  <input name="from" type="text" value="${param.from }" hidden="true">
+  <div class="text-center">
+      <a class="small" href="../book/findPassword.jsp">Forgot Password?</a>
+  </div>
 </form>
     
 

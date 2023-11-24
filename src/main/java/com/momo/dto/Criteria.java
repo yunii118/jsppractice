@@ -14,7 +14,7 @@ public class Criteria {
 	private String searchWord = "";
 	// 검색필드
 	private String searchField = "";
-	
+	private String searchRent="";
 	// 페이지 번호와 게시물수를 입력받아
 	// 조회할 게시글의 시작번호, 끝번호를 구함
 	// 조회할 게시글의 시작번호
@@ -34,7 +34,7 @@ public class Criteria {
 	 * @param pageNo
 	 * @param amount
 	 */
-	public Criteria(String pageNo, String amount, String searchField, String searchWord) {
+	public Criteria(String pageNo, String amount, String searchField, String searchWord, String searchRent) {
 		
 		if(pageNo != null && !"".equals(pageNo)) {
 			this.pageNo = Integer.parseInt(pageNo);
@@ -47,6 +47,9 @@ public class Criteria {
 		}
 		if(searchWord != null && !"".equals(searchWord)) {
 			this.searchWord = searchWord;
+		}
+		if(searchRent != null && !"".equals(searchRent)) {
+			this.searchRent = searchRent;
 		}
 		
 		this.endNum = this.pageNo * this.amount;
@@ -110,6 +113,17 @@ public class Criteria {
 	public void setSearchField(String searchField) {
 		this.searchField = searchField;
 	}
+
+	public String getSearchRent() {
+		return searchRent;
+	}
+
+	public void setSearchRent(String searchRent) {
+		this.searchRent = searchRent;
+	}
+
+
+
 
 	
 

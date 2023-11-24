@@ -25,6 +25,11 @@
 <body>
 
 <!-- 페이지네이션 -->
+<!-- 페이지 블럭을 출력하는 방법
+	1. pageDto를 request영역에 저장
+	2. pageNavi.jsp를 리스트 페이지의 페이지 블럭을 출력하고 싶은 위치에 include
+	3. searchForm을 생성(pageNo가 있어야함) -->
+	
 <nav aria-label="...">
   <ul class="pagination">
   <!-- 앞으로가기 버튼 disabled : 비활성화 -->

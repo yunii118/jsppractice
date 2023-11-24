@@ -26,6 +26,14 @@
 				loginForm.submit();
 			})
 		}
+		if(document.querySelector("#signUpBtn")!=null){
+			let signUpBtn = document.querySelector("#signUpBtn");
+			
+			signUpBtn.addEventListener('click', function(){
+				loginForm.action='/book/register.jsp';
+				loginForm.submit();
+			})
+		}
 		if(document.querySelector("#logoutBtn")!=null){
 			let logoutBtn = document.querySelector("#logoutBtn");
 			

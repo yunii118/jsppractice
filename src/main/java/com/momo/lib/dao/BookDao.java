@@ -24,7 +24,9 @@ public class BookDao extends DBConnPool{
 				&& !"".equals(cri.getSearchWord())) {
 			where = "where " + cri.getSearchField() + " like '%" + cri.getSearchWord()+"%'";
 		}
-		
+		if("available".equals(cri.getSearchRent())) {
+			where = where + " and rentyn ='N'";
+		}
 		String sql = "select * from book\r\n"
 				+ where
 				+ "\r\n order by no desc";
