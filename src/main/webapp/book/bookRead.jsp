@@ -16,6 +16,9 @@
 		    searchForm.action='/bookList';
 		    searchForm.submit();
 		})
+		document.querySelector("#beforeBtn").addEventListener('click', function(){
+			history.go(-1);
+		})
 		
 		
 		if(document.querySelector("#loginBtn")!=null){
@@ -23,14 +26,6 @@
 			
 			loginBtn.addEventListener('click', function(){
 				loginForm.action='/lib/loginForm.jsp';
-				loginForm.submit();
-			})
-		}
-		if(document.querySelector("#signUpBtn")!=null){
-			let signUpBtn = document.querySelector("#signUpBtn");
-			
-			signUpBtn.addEventListener('click', function(){
-				loginForm.action='/book/register.jsp';
 				loginForm.submit();
 			})
 		}
@@ -53,15 +48,18 @@
 <%@ include file="/common/header.jsp" %>
 
 <!-- main -->
-<h2>book 상세 페이지 ${bookDto.no }</h2>
-<form name = "searchForm">
+<h2>${bookDto.title } 상세 페이지</h2>
+<form name = "searchForm" hidden="true">
 	pageNo : <input type="text" name="pageNo" value="${param.pageNo }"> 
 	searchField : <input type="text" name="searchField" value="${param.searchField }"> 
 	searchWord : <input type="text" name="searchWord" value="${param.searchWord }"> 
 </form> 
-
-<button id="listBtn"  class="btn btn-outline-secondary">리스트</button>
-
+<p class="float-sm-end">
+	<button type="button" id="beforeBtn" class="btn btn-secondary">이전</button>
+	<button type="button" id="listBtn" class="btn btn-secondary">리스트</button>
+	&nbsp;
+</p>
+<br />조회수 : ${bookDto.visitcount }
 <br />요청 도서 번호 : ${param.no }
 <br />도서정보 : ${bookDto }
 <br />도서번호 : ${bookDto.no }

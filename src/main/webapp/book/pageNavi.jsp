@@ -21,7 +21,7 @@
 		
 %>
 <nav aria-label="...">
-  <ul class="pagination">
+  <ul class="pagination justify-content-center">
   	<!-- 이전 버튼 -->
     <li class="page-item ${pageDto.prev? '' : 'disabled' }">
       <a class="page-link" onclick="goPage(${pageDto.startNo - 1})">Previous</a>

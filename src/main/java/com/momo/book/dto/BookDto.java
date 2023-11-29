@@ -1,4 +1,4 @@
-package com.momo.lib.dto;
+package com.momo.book.dto;
 
 /**
  * 도서테이블의 정보를 담아줌
@@ -9,16 +9,16 @@ public class BookDto {
 	private String author;
 	private String rentYn;
 	private String rentYnStr;
+	private int visitcount;
 	
 	// 생성자
-	public BookDto(String no, String title, String author, String rentYn) {
+	public BookDto(String no, String title, String author, String rentYn, int visitcount) {
 		this.no = no;
 		this.title = title;
 		this.author = author;
 		this.rentYn = rentYn;
-		
 		rentYnStr = rentYn.equals("Y") ? "대여중" : "대여가능";
-		
+		this.visitcount = visitcount;
 	}
 	
 	@Override
@@ -59,6 +59,14 @@ public class BookDto {
 
 	public void setRentYnStr(String rentYnStr) {
 		this.rentYnStr = rentYnStr;
+	}
+
+	public int getVisitcount() {
+		return visitcount;
+	}
+
+	public void setVisitcount(int visitcount) {
+		this.visitcount = visitcount;
 	}
 	
 	

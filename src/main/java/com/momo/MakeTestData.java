@@ -29,14 +29,13 @@ public class MakeTestData extends DBConnection{
 		}
 	}
 	public void bookInsert() {
-		String sql = "insert into book values (?, ?, 'N', ?)";
-		for(int i = 1;i<=303;i++) {
+		String sql = "insert into book(no, title, rentyn, author, visitcount) values (seq_book_no.nextval, ?, 'N', ?, 0)";
+		for(int i = 1;i<100;i++) {
 			try {
 				pstmt=con.prepareStatement(sql);
 				// 파라메터 세팅
-				pstmt.setInt(1, i);
-				pstmt.setString(2, "책" + i);
-				pstmt.setString(3, "작가" + i);
+				pstmt.setString(1, "책" + i);
+				pstmt.setString(2, "작가" + i);
 				
 				// 입력 실행
 				int res = pstmt.executeUpdate();

@@ -38,7 +38,7 @@ public class LoginProcessController extends HttpServlet {
 			
 			response.sendRedirect(url);
 		}else {
-			response.sendRedirect("/lib/loginForm.jsp?isError=1");
+			response.sendRedirect("/book/loginForm.jsp?isError=1");
 		}
 	}
 

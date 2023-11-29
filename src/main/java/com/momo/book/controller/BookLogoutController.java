@@ -1,4 +1,4 @@
-package com.momo.lib.contorller;
+package com.momo.book.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.momo.lib.dto.BookDto;
+import com.momo.book.dto.BookDto;
 
 
 @WebServlet("/bookLogout")
@@ -19,11 +19,9 @@ public class BookLogoutController extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(session != null) {
 			session.invalidate();
-			
 		}
 		
-		String url = request.getParameter("from");
-		request.getRequestDispatcher(url).forward(request, response);
+		request.getRequestDispatcher("/bookList").forward(request, response);
 	}
 
 	

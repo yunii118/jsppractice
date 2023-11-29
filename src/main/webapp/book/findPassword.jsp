@@ -9,24 +9,38 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action="/findPw" method="post">
-	<div class="alert alert-light" role="alert">
-	  가입한 아이디와 이메일을 입력해주세요!
-	</div>
-  <div class="mb-3">
-    <label for="id" class="form-label">id</label>
-    <input type="text" class="form-control" name="id" id="id">
-  </div>
-  <div class="mb-3">
-    <label for="email" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
-  </div>
-	<input type="text" name="url" value="/book/findPassword.jsp" hidden="true">
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+<%@ include file="../common/header.jsp" %>
+<!-- 메인 컨텐츠 -->
+<!-- Begin Page Content -->
+<div class="container-fluid">
+	 <!-- DataTales Example -->
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+	    	<h6 class="m-0 font-weight-bold text-primary">비밀번호 찾기</h6>
+	    </div>
+	    <div class="card-body">
+	    	<div class="table-responsive">
+				<form action="/findPw" method="post">
+					<div class="alert alert-light" role="alert">
+					  가입한 아이디와 이메일을 입력해주세요!
+					</div>
+					<div class="mb-3">
+						<label for="id" class="form-label">아이디</label>
+						<input type="text" id="id" name="id"  class="form-control bg-light border-0 small" required>				
+				    </div>
+					<div class="mb-3">
+						<label for="id" class="form-label">이메일</label>
+						<input type="email" id="id" name="email"  class="form-control bg-light border-0 small" required>				
+				  	</div>
+					<input type="text" name="url" value="/book/findPassword.jsp" hidden="true">
+					<button type="submit" class="btn">Submit</button>
+				</form>
+		    </div>
+		</div>
+	</div>  
+</div>  
+<!-- 메인 컨텐츠 영역 끝 -->
+<%@ include file="../common/footer.jsp" %>
 
 </body>
 </html>
